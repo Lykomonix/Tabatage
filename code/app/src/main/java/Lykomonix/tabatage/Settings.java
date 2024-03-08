@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class Home extends Fragment {
+public class Settings extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,16 +20,16 @@ public class Home extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        Button btnFragment1 = view.findViewById(R.id.btnStart);
+        Button btnFragment1 = view.findViewById(R.id.btnValider);
         FragmentManager fragmentManager = getParentFragmentManager();
 
         btnFragment1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.fragmentContainerView, Settings.class, null);
+                transaction.replace(R.id.fragmentContainerView, Home.class, null);
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 transaction.addToBackStack(null);
                 transaction.commit();
