@@ -8,7 +8,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fcvActivity"
-        android:name="lyko.tabatage.ui.HomeFragment"
+        android:name="lyko.tabatage.ui.ChoiceFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

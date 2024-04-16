@@ -2,4 +2,8 @@
     <string name="app_name">Tabatage</string>
     <string name="btnStart">Commencer</string>
     <string name="title">Tabatage</string>
+    <string name="btnSubmit">Valider</string>
+    <string name="btnRepeat">Répétitions</string>
+    <string name="btnRest">temps pause</string>
+    <string name="btnActionTime">temps actif</string>
 </resources>
