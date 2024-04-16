@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
+        android:id="@+id/fcvActivity"
         android:name="lyko.tabatage.ui.HomeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
