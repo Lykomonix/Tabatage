@@ -45,8 +45,13 @@ public class ChoiceFragment extends Fragment {
                 String strRest = txteRest.getText().toString();
                 String strRepeat = txteRepeat.getText().toString();
                 if(!strActionTime.isEmpty() && !strRest.isEmpty() && !strRepeat.isEmpty()){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("actionTime", strActionTime);
+                    bundle.putString("rest", strRest);
+                    bundle.putString("repeat", strRepeat);
+
                     FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.fcvActivity, ActionFragment.class, null);
+                    transaction.replace(R.id.fcvActivity, ActionFragment.class, bundle);
                     transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                     transaction.addToBackStack(null);
                     transaction.commit();
