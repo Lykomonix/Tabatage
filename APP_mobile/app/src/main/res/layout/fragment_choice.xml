@@ -29,7 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8sp"
-                    android:text="@string/btnActionTime"
+                    android:text="@string/txtActionTime"
                     android:textSize="20sp"
                     android:gravity="center"/>
 
@@ -39,7 +39,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8sp"
                     android:ems="10"
-                    android:inputType="time" />
+                    android:text="@string/txteActionTime"
+                    android:inputType="time"
+                    android:textAlignment="textEnd" />
             </TableRow>
 
             <TableRow
@@ -53,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8sp"
-                    android:text="@string/btnRest"
+                    android:text="@string/txtRest"
                     android:textSize="20sp"
                     android:gravity="center" />
 
@@ -63,7 +65,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8sp"
                     android:ems="10"
-                    android:inputType="time" />
+                    android:text="@string/txteRest"
+                    android:inputType="time"
+                    android:textAlignment="textEnd" />
             </TableRow>
 
             <TableRow
@@ -76,7 +80,7 @@
                     android:id="@+id/txtRepeat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/btnRepeat"
+                    android:text="@string/txtRepeat"
                     android:layout_margin="8sp"
                     android:textSize="20sp"
                     android:gravity="center" />
@@ -86,8 +90,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:text="@string/txteRepeat"
                     android:inputType="time"
-                    android:layout_margin="8sp" />
+                    android:layout_margin="8sp"
+                    android:textAlignment="textEnd" />
             </TableRow>
 
         </TableLayout>
