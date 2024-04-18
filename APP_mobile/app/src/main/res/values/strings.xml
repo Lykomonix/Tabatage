@@ -6,4 +6,7 @@
     <string name="btnRepeat">Répétitions</string>
     <string name="btnRest">temps pause</string>
     <string name="btnActionTime">temps actif</string>
+    <string name="btnSwitchInit">Commencer</string>
+    <string name="btnSwitchOn">Reprendre</string>
+    <string name="btnSwitchOff">Pause</string>
 </resources>
