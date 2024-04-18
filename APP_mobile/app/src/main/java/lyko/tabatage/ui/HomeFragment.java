@@ -16,6 +16,7 @@ import lyko.tabatage.R;
 public class HomeFragment extends Fragment {
 
     private FragmentManager fragmentManager;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
