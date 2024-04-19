@@ -31,19 +31,23 @@ public class ChoiceFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_choice, container, false);
-        Button btnSubmit = view.findViewById(R.id.btnSubmit);
 
+        //récupération élément du layout
+        Button btnSubmit = view.findViewById(R.id.btnSubmit);
         TextView txteActionTime = view.findViewById(R.id.txteActionTime);
         TextView txteRest = view.findViewById(R.id.txteRest);
         TextView txteRepeat = view.findViewById(R.id.txteRepeat);
+
+        //click de validation
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //récupération des valeurs des cases
                 String strActionTime = txteActionTime.getText().toString();
                 String strRest = txteRest.getText().toString();
                 String strRepeat = txteRepeat.getText().toString();
+                //test pour voir si les champs sont remplis
                 if(!strActionTime.isEmpty() && !strRest.isEmpty() && !strRepeat.isEmpty()){
                     Bundle bundle = new Bundle();
                     bundle.putString("actionTime", strActionTime);

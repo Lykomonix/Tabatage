@@ -22,11 +22,9 @@ public class ActionFragment extends Fragment {
     String actionTime;
     String rest;
     String repeat;
-    int nbrepeat;
-
-    public ActionFragment(){
-        nbrepeat = 0;
-    }
+    int nbRepeat;
+    TextView txtRepeat;
+    TextView txtTime;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +36,9 @@ public class ActionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_action, container, false);
+
+        nbRepeat = 0;
+        //récupération des valeurs du formulaire
         Bundle bundle = getArguments();
         if (bundle != null) {
             actionTime = bundle.getString("actionTime");
@@ -45,11 +46,21 @@ public class ActionFragment extends Fragment {
             repeat = bundle.getString("repeat");
         }
 
-        TextView txtRepeat = view.findViewById(R.id.txtNbRepeat);
-        TextView txtTime = view.findViewById(R.id.txtTime);
+        //récupération des éléments du layout
+        txtRepeat = view.findViewById(R.id.txtNbRepeat);
+        txtTime = view.findViewById(R.id.txtTime);
 
+        //initialisation de l'affichage des répétition
         txtRepeat.setText(String.format("0 / %s", repeat));
 
+        //initilisation du chrono
+        txtTime.setText(String.format(getString(R.string.txtTime), 0, 0, 0));
+
+        return view;
+    }
+
+    public void newTimer(){
+        //initialisation des valeurs du timer
         long timerDuration = TimeUnit.SECONDS.toMillis(parseLong(actionTime));
         long ticksInterval = 10;
 
@@ -57,12 +68,15 @@ public class ActionFragment extends Fragment {
             long millis = 1000;
             @Override
             public void onTick(long millisUntilFinished) {
+                //gestion du temps qui passe
                 millis = millis - ticksInterval;
                 if (millis == 0){
                     millis = 1000;
-                    txtRepeat.setText(String.format("%s / %s", nbrepeat, repeat));
+                    nbRepeat++;
+                    txtRepeat.setText(String.format("%s / %s", nbRepeat, repeat));
                 }
-                String timerText = String.format(Locale.getDefault(),"%02d:%02d:%02d",
+                //gestion de l'affichage du timer
+                String timerText = String.format(Locale.getDefault(),getString(R.string.txtTime),
                         TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished));
@@ -71,10 +85,9 @@ public class ActionFragment extends Fragment {
 
             @Override
             public void onFinish() {
+                //fin du timer
                 txtTime.setText("finished");
             }
         }.start();
-
-        return view;
     }
 }

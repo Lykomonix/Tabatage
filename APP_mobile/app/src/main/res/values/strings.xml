@@ -1,7 +1,11 @@
 <resources>
+    <!--Global-->
     <string name="app_name">Tabatage</string>
+
+    <!--Fragment Home-->
     <string name="btnStart">Commencer</string>
-    <string name="title">Tabatage</string>
+
+    <!--Fragment Choice-->
     <string name="btnSubmit">Valider</string>
     <string name="txtRepeat">Répétitions</string>
     <string name="txtRest">temps pause</string>
@@ -9,7 +13,10 @@
     <string name="txteRepeat">8</string>
     <string name="txteRest">10</string>
     <string name="txteActionTime">20</string>
+
+    <!--Fragment Action-->
     <string name="btnSwitchInit">Commencer</string>
     <string name="btnSwitchOn">Reprendre</string>
     <string name="btnSwitchOff">Pause</string>
+    <string name="txtTime">%02d:%02d:%02d</string>
 </resources>
