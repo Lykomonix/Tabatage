@@ -2,6 +2,7 @@ package lyko.tabatage.ui;
 
 import static java.lang.Long.parseLong;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,7 @@ public class ActionFragment extends Fragment {
     int nbRepeat;
     TextView txtRepeat;
     TextView txtTime;
+    boolean chronoActif;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class ActionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_action, container, false);
 
+        chronoActif = false;
         nbRepeat = 0;
         //récupération des valeurs du formulaire
         Bundle bundle = getArguments();
@@ -62,13 +65,16 @@ public class ActionFragment extends Fragment {
         btnSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newTimer();
+                if(!chronoActif){
+                    newTimerAction();
+                    chronoActif = true;
+                }
             }
         });
         return view;
     }
 
-    public void newTimer(){
+    public void newTimerAction(){
         //initialisation des valeurs du timer
         long timerDuration = TimeUnit.SECONDS.toMillis(parseLong(actionTime));
         long ticksInterval = 10;
@@ -91,10 +97,46 @@ public class ActionFragment extends Fragment {
                 txtTime.setText(timerText);
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFinish() {
                 //fin du timer
-                txtTime.setText("finished");
+                if(nbRepeat < Integer.parseInt(repeat)){
+                    newTimerRest();
+                }
+                else{
+                    txtTime.setText("finished");
+                }
+            }
+        }.start();
+    }
+
+    public void newTimerRest(){
+        //initialisation des valeurs du timer
+        long timerDuration = TimeUnit.SECONDS.toMillis(parseLong(rest));
+        long ticksInterval = 10;
+
+        new CountDownTimer(timerDuration, ticksInterval) {
+            long millis = 1000;
+            @Override
+            public void onTick(long millisUntilFinished) {
+                //gestion du temps qui passe
+                millis = millis - ticksInterval;
+                if (millis == 0){
+                    millis = 1000;
+                }
+                //gestion de l'affichage du timer
+                String timerText = String.format(Locale.getDefault(),getString(R.string.txtTime),
+                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished));
+                txtTime.setText(timerText);
+            }
+
+            @Override
+            public void onFinish() {
+                //fin du timer
+                newTimerAction();
             }
         }.start();
     }
