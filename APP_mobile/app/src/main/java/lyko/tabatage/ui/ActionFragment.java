@@ -1,5 +1,7 @@
 package lyko.tabatage.ui;
 
+import static java.lang.Long.parseLong;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -47,9 +49,8 @@ public class ActionFragment extends Fragment {
         TextView txtTime = view.findViewById(R.id.txtTime);
 
         txtRepeat.setText(String.format("0 / %s", repeat));
-        txtTime.setText(String.format("%s s",actionTime));
 
-        long timerDuration = TimeUnit.MINUTES.toMillis(1);
+        long timerDuration = TimeUnit.SECONDS.toMillis(parseLong(actionTime));
         long ticksInterval = 10;
 
         new CountDownTimer(timerDuration, ticksInterval) {
