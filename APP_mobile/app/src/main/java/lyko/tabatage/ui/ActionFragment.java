@@ -10,6 +10,7 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -49,6 +50,7 @@ public class ActionFragment extends Fragment {
         //récupération des éléments du layout
         txtRepeat = view.findViewById(R.id.txtNbRepeat);
         txtTime = view.findViewById(R.id.txtTime);
+        Button btnSwitch = view.findViewById(R.id.btnSwitch);
 
         //initialisation de l'affichage des répétition
         txtRepeat.setText(String.format("0 / %s", repeat));
@@ -56,6 +58,13 @@ public class ActionFragment extends Fragment {
         //initilisation du chrono
         txtTime.setText(String.format(getString(R.string.txtTime), 0, 0, 0));
 
+        //click sur le boutton
+        btnSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newTimer();
+            }
+        });
         return view;
     }
 
@@ -63,6 +72,7 @@ public class ActionFragment extends Fragment {
         //initialisation des valeurs du timer
         long timerDuration = TimeUnit.SECONDS.toMillis(parseLong(actionTime));
         long ticksInterval = 10;
+        txtRepeat.setText(String.format("%s / %s", ++nbRepeat, repeat));
 
         new CountDownTimer(timerDuration, ticksInterval) {
             long millis = 1000;
@@ -72,8 +82,6 @@ public class ActionFragment extends Fragment {
                 millis = millis - ticksInterval;
                 if (millis == 0){
                     millis = 1000;
-                    nbRepeat++;
-                    txtRepeat.setText(String.format("%s / %s", nbRepeat, repeat));
                 }
                 //gestion de l'affichage du timer
                 String timerText = String.format(Locale.getDefault(),getString(R.string.txtTime),
